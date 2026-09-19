@@ -160,32 +160,20 @@
 
   <!-- ============================================================
        五、板块 4：项目 / 作品
-       3 个示例卡片。想改成自己的真实经历，改标题、简介和标签文字即可。
-       想加第 4 个，就把一整段 <article class="card project-card"> ... </article>
-       复制一份，改掉里面的内容。
+       4 个示例卡片，占位内容，可以随意改。
+       想再加一个：把一整段 <article class="card project-card"> ... </article>
+       复制一份，改掉里面的标题、简介和标签文字即可。
+       ★ 注意：改成 5 个的话，电脑上会变成"2 列 + 最后一行只剩 1 个"，
+         如果觉得不好看，可以在 style.css 里把 .project-grid 改回 3 列。
        ============================================================ -->
   <section id="projects" class="section">
     <div class="container">
       <h2 class="section-title">项目 / 作品</h2>
 
-      <!-- 桌面端 3 列并排，手机端自动变单列（由 CSS 控制） -->
+      <!-- 桌面端 2 列 × 2 行（4 个卡片刚好排满，很整齐），手机端自动变单列 -->
       <div class="project-grid">
 
         <!-- 项目卡片 1 -->
-        <article class="card project-card">
-          <h3 class="card-title">某住宅楼工程量清单编制</h3>
-          <p class="card-desc">
-            依据施工图纸完成土建部分的工程量计算，整理成分部分项工程量清单，
-            并核对项目特征描述与计量单位。
-          </p>
-          <div class="tag-list">
-            <span class="tag tag-small">工程计量</span>
-            <span class="tag tag-small">广联达</span>
-            <span class="tag tag-small">清单计价</span>
-          </div>
-        </article>
-
-        <!-- 项目卡片 2 -->
         <article class="card project-card">
           <h3 class="card-title">小型项目成本测算与对比分析</h3>
           <p class="card-desc">
@@ -199,23 +187,7 @@
           </div>
         </article>
 
-        <!-- 项目卡片 3 -->
-        <article class="card project-card">
-          <h3 class="card-title">校园小型建筑 CAD 施工图绘制</h3>
-          <p class="card-desc">
-            使用 AutoCAD 绘制建筑平面图与剖面图，按制图规范设置图层、线型与标注，
-            并完成图纸的打印出图。
-          </p>
-          <div class="tag-list">
-            <span class="tag tag-small">AutoCAD</span>
-            <span class="tag tag-small">施工图</span>
-            <span class="tag tag-small">制图规范</span>
-          </div>
-        </article>
-
-        <!-- ===== 以下 3 张卡片为本次新增（占位内容，可自行修改文字）===== -->
-
-        <!-- 项目卡片 4 -->
+        <!-- 项目卡片 2 -->
         <article class="card project-card">
           <h3 class="card-title">某住宅楼工程造价预算（课程作业）</h3>
           <p class="card-desc">
@@ -229,7 +201,7 @@
           </div>
         </article>
 
-        <!-- 项目卡片 5 -->
+        <!-- 项目卡片 3 -->
         <article class="card project-card">
           <h3 class="card-title">校园小型建筑 CAD 制图（课程作业）</h3>
           <p class="card-desc">
@@ -243,7 +215,7 @@
           </div>
         </article>
 
-        <!-- 项目卡片 6 -->
+        <!-- 项目卡片 4 -->
         <article class="card project-card">
           <h3 class="card-title">BIM 建模练习作品（自学）</h3>
           <p class="card-desc">
