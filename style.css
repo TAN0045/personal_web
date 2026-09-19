@@ -15,11 +15,27 @@
    只要把 --main 的值改成 #3E8E7E 即可。
    ============================================================ */
 :root {
-  --main:        #4E7C9B;   /* 主色（按钮、链接、标签等点缀色）—— 低饱和蓝 */
+  /* ---------- 主色：低饱和蓝 ---------- */
+  --main:        #4E7C9B;   /* 主色（标题下划线、链接、标签等）—— 低饱和蓝 */
   --main-dark:   #2F4858;   /* 深色（标题文字） */
   --main-light:  #EAF0F4;   /* 主色的浅色版（标签背景） */
 
-  --bg:          #F7F8FA;   /* 页面背景（浅灰） */
+  /* ---------- 点缀色：低饱和橙 ----------
+     蓝色配橙色是对比色，点缀起来最显眼。
+     但只用在小地方（项目卡片的小标签、收藏推荐的小方块、
+     卡片标题悬停变色），大面积用会显得花哨，破坏简约感。 */
+  --accent:       #C98A5E;  /* 点缀橙（文字/边框） */
+  --accent-light: #FAF0E8;  /* 点缀橙的浅色版（小标签背景） */
+
+  /* ---------- 板块背景色（★ 想让某个板块换个颜色，改这里）----------
+     每个板块用不同的浅色区分，颜色都很淡、很柔和，不会抢内容的风头。
+     下面的注释标明了每个颜色实际用在哪个板块（在文件后半部分指定）。 */
+  --bg:          #F7F8FA;   /* 页面背景 & 技能板块（浅灰） */
+  --bg-blue:     #EAF0F4;   /* 关于我（浅蓝） */
+  --bg-cream:    #FAF5EF;   /* 项目作品（浅米） */
+  --bg-green:    #EDF4F0;   /* 收藏推荐（浅绿） */
+  --bg-bluegray: #EEF2F6;   /* 联系方式（浅蓝灰） */
+
   --card-bg:     #FFFFFF;   /* 卡片背景（白） */
   --border:      #E4E8EC;   /* 分隔线 / 边框颜色 */
   --text:        #333333;   /* 正文文字颜色 */
@@ -101,16 +117,35 @@ ul, ol {
   scroll-margin-top: var(--nav-height);
 }
 
-/* 板块标题（关于我 / 技能 / 项目 ...） */
+/* 板块之间的细分隔线。
+   :not(.hero) 意思是"除首页板块之外的所有板块"。
+   首页不加这条线——它和导航栏之间已经有一条边框了，再加会变成双线。 */
+.section:not(.hero) {
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- 每个板块的背景色（★ 想换颜色，改文件顶部 :root 里的变量）----------
+   相邻板块用不同的浅色，滚动时一眼能看出"换板块了"。
+   颜色都很淡很柔和，不会抢内容的风头。 */
+#about     { background-color: var(--bg-blue); }      /* 关于我：浅蓝 */
+#skills    { background-color: var(--bg); }           /* 技能：浅灰 */
+#projects  { background-color: var(--bg-cream); }     /* 项目作品：浅米 */
+#blog      { background-color: var(--card-bg); }      /* 博客：白 */
+#favorites { background-color: var(--bg-green); }     /* 收藏推荐：浅绿 */
+#contact   { background-color: var(--bg-bluegray); }  /* 联系方式：浅蓝灰 */
+
+/* 板块标题（关于我 / 技能 / 项目 ...）
+   ★ 醒目改造：字号 24→28px、加粗到 700、下划线加粗到 3px 主色蓝 */
 .section-title {
   color: var(--main-dark);
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  /* 标题下方一条细线做分隔，比阴影更轻更干净 */
-  border-bottom: 2px solid var(--main);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  /* 标题下方一条主色下划线做装饰，比阴影更轻更干净 */
+  border-bottom: 3px solid var(--main);
   display: inline-block;   /* 让下划线只跟文字一样长，而不是横跨整行 */
+  letter-spacing: 0.5px;   /* 字距稍微拉开一点，大字标题更透气 */
 }
 
 
@@ -219,10 +254,12 @@ ul, ol {
    五、板块 1：首页 Hero（头像 + 姓名 + 一句话简介）
    ============================================================ */
 
-/* 首页用白色背景，和下面的浅灰页面背景形成区分 */
+/* 首页用白色背景，和下面的浅蓝"关于我"形成区分。
+   注意：这里故意不加 border-bottom——
+   因为"关于我"板块自己有一条 border-top（见上面 .section:not(.hero)），
+   两边都加的话交界处会出现一条双倍粗的线，很难看。 */
 .hero {
   background-color: var(--card-bg);
-  border-bottom: 1px solid var(--border);
   padding: 72px 0;
 }
 
@@ -288,6 +325,14 @@ ul, ol {
   font-size: 17px;
   font-weight: 600;
   margin-bottom: 10px;
+  /* 让下面 hover 变色时有平滑过渡，不会"啪"地一下跳变 */
+  transition: color 0.2s ease;
+}
+
+/* 鼠标移到项目卡片上时，标题变成点缀橙。
+   纯装饰效果，手机上用手指点没有鼠标悬停，看不到也不影响使用。 */
+.project-card:hover .card-title {
+  color: var(--accent);
 }
 
 .card-desc {
@@ -312,10 +357,16 @@ ul, ol {
   border: 1px solid #D6E2EA;
 }
 
-/* 项目卡片里的小号标签 */
+/* 项目卡片里的小号标签
+   ★ 醒目改造：这里改用点缀橙，和"技能"板块的蓝色标签区分开，
+     让"项目里的技术标签"一眼就能认出来。
+     注意：本规则写在 .tag 后面，所以能覆盖上面的蓝底蓝字。 */
 .tag-small {
   font-size: 12px;
   padding: 3px 10px;
+  background-color: var(--accent-light);
+  color: var(--accent);
+  border-color: #EBD9C8;
 }
 
 
@@ -432,6 +483,14 @@ ul, ol {
   border-bottom: 1px dashed var(--border);
 }
 
+/* 博客正文里"（正文内容待补充……）"这句占位提示。
+   用斜体 + 浅灰色，一眼就能看出这里还没写正式内容。
+   ★ 你写好正文后，把 HTML 里带 class="blog-placeholder" 的那个 <p> 删掉即可。 */
+.blog-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 /* 正文段落之间的间距 */
 .blog-body p + p {
   margin-top: 12px;
@@ -439,7 +498,68 @@ ul, ol {
 
 
 /* ============================================================
-   十、页脚
+   十、板块 6：收藏推荐（本次新增）
+   左边书单、右边网站，电脑上两栏并排，手机上变上下两栏。
+   ============================================================ */
+
+/* 两栏网格。和项目卡片一样用 grid，只是这里固定 2 列 */
+.favorite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* 分组标题（"书单" / "网站"） */
+.fav-title {
+  color: var(--main-dark);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;            /* 让前面那个橙色小方块和文字横向对齐 */
+  align-items: center;
+  gap: 8px;                 /* 方块和文字的间距 */
+}
+
+/* 分组标题前面的橙色小方块（★ 点缀色的第二处应用）。
+   它本身是个空标签，靠宽高和背景色显示成一个实心方块。 */
+.fav-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 1px;       /* 稍微磨一点角，纯方形显得生硬 */
+  flex-shrink: 0;           /* 防止被文字挤扁 */
+}
+
+/* 书单 / 网站 的条目列表 */
+.fav-list li {
+  color: var(--text);
+  font-size: 15px;
+  padding: 9px 0 9px 14px;
+  border-bottom: 1px dashed var(--border);   /* 虚线分隔，比实线更轻 */
+  position: relative;
+}
+
+/* 每条前面的小圆点，用伪元素画，不用真的插入字符 */
+.fav-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;                /* 垂直位置，让圆点和第一行文字对齐 */
+  width: 5px;
+  height: 5px;
+  background-color: var(--main);
+  border-radius: 50%;       /* 50% 圆形 */
+}
+
+/* 最后一条不要虚线下划线 */
+.fav-list li:last-child {
+  border-bottom: none;
+}
+
+
+/* ============================================================
+   十一、页脚
    ============================================================ */
 .footer {
   background-color: var(--card-bg);
@@ -505,17 +625,24 @@ ul, ol {
     font-size: 15px;
   }
 
-  /* 4) 每个板块的上下留白缩小 */
+  /* 4) 每个板块的上下留白缩小，标题字号也跟着调小
+        （电脑上是 28px，手机上用 22px，不然一行放不下几个字） */
   .section {
     padding: 40px 0;
   }
   .section-title {
-    font-size: 21px;
+    font-size: 22px;
   }
 
   /* 5) ★ 布局变单列 ★
-     项目卡片：3 列 → 1 列（手机上竖着排，卡片更宽更好读） */
+     项目卡片：3 列 → 1 列（手机上竖着排，卡片更宽更好读）
+     共 6 张卡片，手机上就是从上到下排 6 行 */
   .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 6) 收藏推荐：左右 2 栏 → 上下 1 栏 */
+  .favorite-grid {
     grid-template-columns: 1fr;
   }
 
@@ -524,7 +651,7 @@ ul, ol {
     padding: 18px;
   }
 
-  /* 6) 关于我 / 联系方式：名称和内容改成上下两行排列，
+  /* 7) 关于我 / 联系方式：名称和内容改成上下两行排列，
         否则手机上"兴趣方向"这几个字会把内容挤得很窄 */
   .info-list {
     grid-template-columns: 1fr;
@@ -534,7 +661,7 @@ ul, ol {
     margin-bottom: 10px;
   }
 
-  /* 7) 博客列表左右内边距缩小 */
+  /* 8) 博客列表左右内边距缩小 */
   .blog-list {
     padding: 0 18px;
   }

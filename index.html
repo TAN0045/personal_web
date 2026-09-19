@@ -42,6 +42,7 @@
         <a href="#skills">技能</a>
         <a href="#projects">项目</a>
         <a href="#blog">博客</a>
+        <a href="#favorites">收藏</a>
         <a href="#contact">联系</a>
       </nav>
 
@@ -114,6 +115,14 @@
 
           <dt>兴趣方向</dt>
           <dd>工程管理与成本控制、BIM 与数字化建造、招投标与合同管理</dd>
+
+          <!-- 下面两行是本次新增的。注意"兴趣方向"指专业方向，
+               "兴趣爱好"指生活爱好，两者不一样，所以分两行写 -->
+          <dt>兴趣爱好</dt>
+          <dd>跑步、滑板</dd>
+
+          <dt>目前状态</dt>
+          <dd>学习中 Vibecoding</dd>
         </dl>
       </div>
     </div>
@@ -137,9 +146,12 @@
           <span class="tag">Excel 数据处理</span>
           <span class="tag">项目管理基础</span>
           <span class="tag">工程计量与计价</span>
-          <span class="tag">广联达算量软件</span>
+          <!-- 原有的"广联达算量软件"精简为"广联达"、"BIM 基础"精简为"BIM"，
+               避免和新增的标签重复；Revit 是本次新增 -->
+          <span class="tag">广联达</span>
+          <span class="tag">Revit</span>
+          <span class="tag">BIM</span>
           <span class="tag">招投标文件编制</span>
-          <span class="tag">BIM 基础</span>
         </div>
       </div>
     </div>
@@ -201,6 +213,50 @@
           </div>
         </article>
 
+        <!-- ===== 以下 3 张卡片为本次新增（占位内容，可自行修改文字）===== -->
+
+        <!-- 项目卡片 4 -->
+        <article class="card project-card">
+          <h3 class="card-title">某住宅楼工程造价预算（课程作业）</h3>
+          <p class="card-desc">
+            根据课程给定的住宅楼图纸，完成土建与装饰部分的造价预算，
+            编制预算表并分析主要材料价格对总价的影响。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">造价预算</span>
+            <span class="tag tag-small">定额计价</span>
+            <span class="tag tag-small">课程作业</span>
+          </div>
+        </article>
+
+        <!-- 项目卡片 5 -->
+        <article class="card project-card">
+          <h3 class="card-title">校园小型建筑 CAD 制图（课程作业）</h3>
+          <p class="card-desc">
+            完成一栋校园小型建筑的平面图、立面图与剖面图绘制，
+            按制图规范设置图层、线型与尺寸标注。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">CAD</span>
+            <span class="tag tag-small">建筑制图</span>
+            <span class="tag tag-small">课程作业</span>
+          </div>
+        </article>
+
+        <!-- 项目卡片 6 -->
+        <article class="card project-card">
+          <h3 class="card-title">BIM 建模练习作品（自学）</h3>
+          <p class="card-desc">
+            自学期间完成的建模练习，使用 Revit 搭建建筑主体模型，
+            练习墙体、门窗、楼板的建模流程与构件参数设置。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">Revit</span>
+            <span class="tag tag-small">BIM</span>
+            <span class="tag tag-small">自学</span>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -221,25 +277,25 @@
 
       <div class="blog-list">
 
+        <!-- ===== 以下 3 篇文章为本次新增（占位内容）=====
+             ★ 想写正文时：把每篇 <div class="blog-body"> 里那句
+               "（正文内容待补充……）" 换成你自己的文字即可。
+               一段话用一个 <p>你的文字</p> 包起来，想写几段就复制几行。
+               摘要写在 <p class="blog-summary"> 里，会显示在正式内容上方。 -->
+
         <!-- 第 1 篇文章 -->
         <article class="blog-item">
           <button class="blog-head" type="button">
-            <span class="blog-title">工程造价入门：从看懂一份工程量清单开始</span>
+            <span class="blog-title">工程造价入门学习笔记</span>
             <span class="blog-date">2026-03-12</span>
           </button>
           <div class="blog-body">
             <p class="blog-summary">
-              摘要：工程量清单是造价工作的起点。本文梳理清单的组成结构，
-              以及初学者最容易弄错的几个计量单位问题。
+              摘要：记录入门阶段学到的几个核心概念——工程量清单、定额、计价方式，
+              以及自己踩过的坑，给同样刚起步的同学做个参考。
             </p>
-            <p>
-              刚开始接触造价时，我最大的困惑是"图纸上的东西怎么变成表格里的数字"。
-              后来才明白，中间靠的就是工程量清单这套统一的语言。
-            </p>
-            <p>
-              清单由分部分项工程量清单、措施项目清单、其他项目清单等几部分组成。
-              每一行都包含项目编码、项目名称、项目特征、计量单位和工程量五个要素，
-              其中"项目特征"最容易写不全，直接影响后面的组价结果。
+            <p class="blog-placeholder">
+              （正文内容待补充……）
             </p>
           </div>
         </article>
@@ -247,23 +303,16 @@
         <!-- 第 2 篇文章 -->
         <article class="blog-item">
           <button class="blog-head" type="button">
-            <span class="blog-title">用 Excel 做成本测算表的几个实用技巧</span>
+            <span class="blog-title">我的大三校园生活记录</span>
             <span class="blog-date">2026-04-25</span>
           </button>
           <div class="blog-body">
             <p class="blog-summary">
-              摘要：分享我在课程作业中反复用到的 Excel 技巧，
-              让成本测算表不只是"能算"，而是"改一个数全表自动更新"。
+              摘要：大三这一年的课程、作业和课余生活，
+              以及在学习节奏和心态上的一些调整。
             </p>
-            <p>
-              成本测算表最怕的就是"改一个单价，要手动改十几个地方"。
-              解决办法是把单价、损耗率这类会变的数字单独放在一张"参数表"里，
-              其他表用引用去取值。
-            </p>
-            <p>
-              另外两个常用函数：VLOOKUP 用来按名称匹配单价，
-              SUMIFS 用来按"分项 + 月份"这种多条件汇总。
-              把这两个用熟，做测算表的效率会明显提高。
+            <p class="blog-placeholder">
+              （正文内容待补充……）
             </p>
           </div>
         </article>
@@ -271,21 +320,16 @@
         <!-- 第 3 篇文章 -->
         <article class="blog-item">
           <button class="blog-head" type="button">
-            <span class="blog-title">BIM 对造价岗位意味着什么</span>
+            <span class="blog-title">关于造价行业的一点思考</span>
             <span class="blog-date">2026-06-08</span>
           </button>
           <div class="blog-body">
             <p class="blog-summary">
-              摘要：从"翻模算量"到"全过程成本管理"，
-              聊聊 BIM 正在怎样改变造价人员的日常工作。
+              摘要：从行业现状、岗位要求和技能趋势几个角度，
+              聊聊我对造价行业的一点观察和想法。
             </p>
-            <p>
-              传统算量需要人对着二维图纸一点点描，模型建好之后，
-              工程量可以直接从模型里提取出来，重复劳动会大幅减少。
-            </p>
-            <p>
-              但模型不会自己判断该套哪条定额、该按什么规则扣减。
-              所以对造价人员来说，工具在变，对计量规则和合同的理解反而更重要了。
+            <p class="blog-placeholder">
+              （正文内容待补充……）
             </p>
           </div>
         </article>
@@ -296,7 +340,48 @@
 
 
   <!-- ============================================================
-       七、板块 6：联系方式
+       七、板块 6：收藏推荐（本次新增）
+       放书单和常用网站。电脑上左右两栏并排，手机上自动变成上下两栏。
+       ============================================================ -->
+  <section id="favorites" class="section">
+    <div class="container">
+      <h2 class="section-title">收藏推荐</h2>
+
+      <div class="favorite-grid">
+
+        <!-- 左栏：书单 -->
+        <div class="card">
+          <h3 class="fav-title"><span class="fav-mark"></span>书单</h3>
+          <ul class="fav-list">
+            <li>《建筑工程造价管理》</li>
+            <li>《工程造价案例分析》</li>
+            <li>《土木工程概论》</li>
+          </ul>
+        </div>
+
+        <!-- 右栏：常用网站 -->
+        <div class="card">
+          <h3 class="fav-title"><span class="fav-mark"></span>网站</h3>
+          <!-- ★ 想把这些网站变成可点击的链接，照下面这样改：
+               把   <li>中国建设工程造价信息网</li>
+               改成 <li><a href="https://真实网址" target="_blank">中国建设工程造价信息网</a></li>
+               其中 target="_blank" 表示在新标签页打开。
+               （这里没有预先填网址，因为网址填错会跳到不相干的页面，
+                 反而更糟。你确认过正确网址后再自己加上即可。） -->
+          <ul class="fav-list">
+            <li>中国建设工程造价信息网</li>
+            <li>广联达服务新干线</li>
+            <li>BIM 建筑信息模型学习站</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       八、板块 7：联系方式
        这里只放占位信息，★ 请勿填写真实手机号等隐私信息 ★
        ============================================================ -->
   <section id="contact" class="section">
@@ -320,7 +405,7 @@
 
 
   <!-- ============================================================
-       八、页脚（版权信息）
+       九、板块 8：页脚（版权信息）
        ============================================================ -->
   <footer class="footer">
     <div class="container">
