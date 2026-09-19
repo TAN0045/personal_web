@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     个人博客网页 —— 页面骨架文件（index.html）
+     作者：谭亦可
+     说明：这个文件负责"网页上有什么内容"，长什么样由 style.css 决定，
+           点击交互由 script.js 决定。三个文件配合使用。
+     使用方法：直接双击本文件即可用浏览器打开，不需要联网。
+     ============================================================ -->
+<html lang="zh-CN">
+<head>
+  <!-- 声明字符编码为 UTF-8，否则中文会显示成乱码 -->
+  <meta charset="UTF-8">
+
+  <!-- 【手机适配关键代码】viewport 让网页在手机上按屏幕实际宽度显示，
+       不要删掉这一行，否则手机上字会变得非常小 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 浏览器标签页上显示的标题 -->
+  <title>谭亦可 | 个人博客</title>
+
+  <!-- 引入外部样式表（外观样式都写在 style.css 里） -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       一、顶部导航栏
+       - 电脑上：一行横排显示所有菜单
+       - 手机上：自动变成右上角的"汉堡菜单"（三条横线 ☰），点击展开
+       ============================================================ -->
+  <header class="navbar">
+    <div class="navbar-inner">
+
+      <!-- 左侧：网站名字 -->
+      <a href="#hero" class="brand">谭亦可</a>
+
+      <!-- 中间：导航链接。href="#xxx" 表示点击后跳到 id 为 xxx 的板块 -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#blog">博客</a>
+        <a href="#contact">联系</a>
+      </nav>
+
+      <!-- 右侧：汉堡按钮（只在手机端显示，由 CSS 控制）。
+           aria-label 是给读屏软件听的说明文字，属于无障碍设计的好习惯 -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="展开导航菜单">
+        <span class="hamburger-icon"></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       二、板块 1：首页 Hero（姓名 + 一句话简介 + 头像）
+       ============================================================ -->
+  <section id="hero" class="section hero">
+    <div class="container hero-inner">
+
+      <!-- ---------- 头像占位块 ----------
+           下面这个灰色方块是"头像待添加"的临时占位。
+
+           ★★★ 如何换成你自己的照片？三步搞定 ★★★
+           第 1 步：把准备好的照片复制到本文件夹（和 index.html 同一个文件夹），
+                    例如命名为 avatar.jpg
+           第 2 步：把下面 <div class="avatar-placeholder"> ... </div>
+                    这一整段（从 <div 开始到 </div> 结束）删掉，
+                    换成这一行代码：
+                       <img src="avatar.jpg" alt="谭亦可的头像" class="avatar-img">
+                    注意：src="avatar.jpg" 里的文件名要和你实际的文件名一模一样
+                    （包括 .jpg / .png 的后缀）
+           第 3 步：保存文件，刷新浏览器即可看到照片。
+
+           照片建议：正方形（例如 300×300 像素）、大小 200KB 以内、
+                     正脸清晰的证件照或生活照均可。
+           ---------------------------------- -->
+      <div class="avatar-placeholder">
+        头像待添加
+      </div>
+
+      <div class="hero-text">
+        <h1 class="hero-name">谭亦可</h1>
+        <p class="hero-slogan">工程造价专业大三学生，关注工程管理与成本控制。</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       三、板块 2：关于我
+       注意：这里只放学校、专业、年级、兴趣方向等公开信息，不放隐私内容
+       ============================================================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">关于我</h2>
+
+      <!-- 用"卡片"把信息分组，看起来更整齐 -->
+      <div class="card">
+        <!-- <dl> 是"描述列表"，<dt> 是词条名称，<dd> 是对应的说明文字 -->
+        <dl class="info-list">
+          <dt>学校</dt>
+          <dd>中南财经政法大学</dd>
+
+          <dt>专业</dt>
+          <dd>工程造价</dd>
+
+          <dt>年级</dt>
+          <dd>大三</dd>
+
+          <dt>兴趣方向</dt>
+          <dd>工程管理与成本控制、BIM 与数字化建造、招投标与合同管理</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       四、板块 3：技能
+       用"标签"形式展示。想加减技能，直接复制/删除一行 <span class="tag"> 即可
+       ============================================================ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title">技能</h2>
+
+      <div class="card">
+        <!-- 要加一个新技能，就复制一行，把文字换掉，例如： -->
+        <!-- <span class="tag">新技能名称</span> -->
+        <div class="tag-list">
+          <span class="tag">工程造价</span>
+          <span class="tag">CAD 制图</span>
+          <span class="tag">Excel 数据处理</span>
+          <span class="tag">项目管理基础</span>
+          <span class="tag">工程计量与计价</span>
+          <span class="tag">广联达算量软件</span>
+          <span class="tag">招投标文件编制</span>
+          <span class="tag">BIM 基础</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       五、板块 4：项目 / 作品
+       3 个示例卡片。想改成自己的真实经历，改标题、简介和标签文字即可。
+       想加第 4 个，就把一整段 <article class="card project-card"> ... </article>
+       复制一份，改掉里面的内容。
+       ============================================================ -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">项目 / 作品</h2>
+
+      <!-- 桌面端 3 列并排，手机端自动变单列（由 CSS 控制） -->
+      <div class="project-grid">
+
+        <!-- 项目卡片 1 -->
+        <article class="card project-card">
+          <h3 class="card-title">某住宅楼工程量清单编制</h3>
+          <p class="card-desc">
+            依据施工图纸完成土建部分的工程量计算，整理成分部分项工程量清单，
+            并核对项目特征描述与计量单位。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">工程计量</span>
+            <span class="tag tag-small">广联达</span>
+            <span class="tag tag-small">清单计价</span>
+          </div>
+        </article>
+
+        <!-- 项目卡片 2 -->
+        <article class="card project-card">
+          <h3 class="card-title">小型项目成本测算与对比分析</h3>
+          <p class="card-desc">
+            收集人工、材料、机械的价格数据，建立 Excel 成本测算表，
+            对比不同施工方案的总成本，输出选型建议。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">成本控制</span>
+            <span class="tag tag-small">Excel</span>
+            <span class="tag tag-small">方案比选</span>
+          </div>
+        </article>
+
+        <!-- 项目卡片 3 -->
+        <article class="card project-card">
+          <h3 class="card-title">校园小型建筑 CAD 施工图绘制</h3>
+          <p class="card-desc">
+            使用 AutoCAD 绘制建筑平面图与剖面图，按制图规范设置图层、线型与标注，
+            并完成图纸的打印出图。
+          </p>
+          <div class="tag-list">
+            <span class="tag tag-small">AutoCAD</span>
+            <span class="tag tag-small">施工图</span>
+            <span class="tag tag-small">制图规范</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       六、板块 5：博客
+       共 3 篇示例文章。点击标题可展开/收起正文（功能由 script.js 实现）。
+       结构说明：
+         <article class="blog-item">  一篇文章
+           ├─ <button class="blog-head">  点击区域：标题 + 日期（用 button 是为了键盘也能操作）
+           └─ <div class="blog-body">     正文，默认隐藏，点击后展开
+       ★ 换成你自己的文章：改标题、日期、摘要和正文里的文字即可。
+       ============================================================ -->
+  <section id="blog" class="section">
+    <div class="container">
+      <h2 class="section-title">博客</h2>
+
+      <div class="blog-list">
+
+        <!-- 第 1 篇文章 -->
+        <article class="blog-item">
+          <button class="blog-head" type="button">
+            <span class="blog-title">工程造价入门：从看懂一份工程量清单开始</span>
+            <span class="blog-date">2026-03-12</span>
+          </button>
+          <div class="blog-body">
+            <p class="blog-summary">
+              摘要：工程量清单是造价工作的起点。本文梳理清单的组成结构，
+              以及初学者最容易弄错的几个计量单位问题。
+            </p>
+            <p>
+              刚开始接触造价时，我最大的困惑是"图纸上的东西怎么变成表格里的数字"。
+              后来才明白，中间靠的就是工程量清单这套统一的语言。
+            </p>
+            <p>
+              清单由分部分项工程量清单、措施项目清单、其他项目清单等几部分组成。
+              每一行都包含项目编码、项目名称、项目特征、计量单位和工程量五个要素，
+              其中"项目特征"最容易写不全，直接影响后面的组价结果。
+            </p>
+          </div>
+        </article>
+
+        <!-- 第 2 篇文章 -->
+        <article class="blog-item">
+          <button class="blog-head" type="button">
+            <span class="blog-title">用 Excel 做成本测算表的几个实用技巧</span>
+            <span class="blog-date">2026-04-25</span>
+          </button>
+          <div class="blog-body">
+            <p class="blog-summary">
+              摘要：分享我在课程作业中反复用到的 Excel 技巧，
+              让成本测算表不只是"能算"，而是"改一个数全表自动更新"。
+            </p>
+            <p>
+              成本测算表最怕的就是"改一个单价，要手动改十几个地方"。
+              解决办法是把单价、损耗率这类会变的数字单独放在一张"参数表"里，
+              其他表用引用去取值。
+            </p>
+            <p>
+              另外两个常用函数：VLOOKUP 用来按名称匹配单价，
+              SUMIFS 用来按"分项 + 月份"这种多条件汇总。
+              把这两个用熟，做测算表的效率会明显提高。
+            </p>
+          </div>
+        </article>
+
+        <!-- 第 3 篇文章 -->
+        <article class="blog-item">
+          <button class="blog-head" type="button">
+            <span class="blog-title">BIM 对造价岗位意味着什么</span>
+            <span class="blog-date">2026-06-08</span>
+          </button>
+          <div class="blog-body">
+            <p class="blog-summary">
+              摘要：从"翻模算量"到"全过程成本管理"，
+              聊聊 BIM 正在怎样改变造价人员的日常工作。
+            </p>
+            <p>
+              传统算量需要人对着二维图纸一点点描，模型建好之后，
+              工程量可以直接从模型里提取出来，重复劳动会大幅减少。
+            </p>
+            <p>
+              但模型不会自己判断该套哪条定额、该按什么规则扣减。
+              所以对造价人员来说，工具在变，对计量规则和合同的理解反而更重要了。
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       七、板块 6：联系方式
+       这里只放占位信息，★ 请勿填写真实手机号等隐私信息 ★
+       ============================================================ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">联系方式</h2>
+
+      <div class="card">
+        <dl class="info-list">
+          <dt>邮箱</dt>
+          <!-- mailto: 链接点击后会打开邮件客户端。要改成你的邮箱，
+               同时修改显示文字和 href 里的地址，例如：
+               <a href="mailto:abc@qq.com">abc@qq.com</a> -->
+          <dd><a href="mailto:000000@example.com">000000@example.com</a></dd>
+
+          <dt>电话</dt>
+          <dd><a href="tel:000-0000-0000">000-0000-0000</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       八、页脚（版权信息）
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 谭亦可 · 个人博客 | 课堂作业展示用</p>
+    </div>
+  </footer>
+
+
+  <!-- 引入交互脚本。放在 body 最后，保证上面的元素都已经加载完成 -->
+  <script src="script.js"></script>
+
+</body>
+</html>

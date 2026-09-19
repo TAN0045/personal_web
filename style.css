@@ -1,0 +1,555 @@
+/* ============================================================
+   个人博客网页 —— 样式文件（style.css）
+   说明：这个文件决定网页"长什么样"（颜色、字号、间距、排列方式）。
+        想改外观，基本都在这个文件里改。
+   风格：浅色背景 + 低饱和蓝点缀 + 无阴影 + 小圆角，干净简约。
+   ============================================================ */
+
+
+/* ============================================================
+   一、配色变量（★ 想换主题色，只改这一块就够了 ★）
+
+   下面用 -- 开头的叫"CSS 变量"，相当于给颜色起了个名字。
+   后面所有地方都用 var(--名字) 来引用，所以只要改这里的值，
+   整站的颜色会一起变，不用一行行去找。例如把主色改成青绿，
+   只要把 --main 的值改成 #3E8E7E 即可。
+   ============================================================ */
+:root {
+  --main:        #4E7C9B;   /* 主色（按钮、链接、标签等点缀色）—— 低饱和蓝 */
+  --main-dark:   #2F4858;   /* 深色（标题文字） */
+  --main-light:  #EAF0F4;   /* 主色的浅色版（标签背景） */
+
+  --bg:          #F7F8FA;   /* 页面背景（浅灰） */
+  --card-bg:     #FFFFFF;   /* 卡片背景（白） */
+  --border:      #E4E8EC;   /* 分隔线 / 边框颜色 */
+  --text:        #333333;   /* 正文文字颜色 */
+  --text-muted:  #6B7780;   /* 次要文字（日期、页脚等）颜色 */
+
+  --radius:      4px;       /* 统一圆角大小（数值小 = 更方正的简约感） */
+  --max-width:   900px;     /* 正文区域的最大宽度，屏幕再宽也不会被拉长 */
+  --nav-height:  70px;      /* 导航栏高度，用于防止跳转时标题被挡住 */
+}
+
+
+/* ============================================================
+   二、全局基础设置（对所有元素生效）
+   ============================================================ */
+
+/* 让宽度计算包含内边距和边框，布局更符合直觉 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 页面整体：背景色、字体、文字颜色、行高 */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  /* 字体用"系统默认无衬线字体"：不同系统会自动选各自的默认字体，
+     不依赖任何外部字体文件，断网也不影响显示 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
+               "PingFang SC", "Hiragino Sans GB", Roboto, "Helvetica Neue",
+               Arial, sans-serif;
+  font-size: 16px;      /* 正文字号 */
+  line-height: 1.7;     /* 行高，1.7 倍读起来比较舒服 */
+}
+
+/* ★ 平滑滚动：点击导航链接跳转时是"滑过去"而不是"瞬间闪过去" */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 让图片默认不会撑破容器 */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 超链接默认是主色，鼠标移上去有下划线反馈 */
+a {
+  color: var(--main);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* 去掉列表默认的小圆点（本页用到列表的地方都自己控制样式） */
+ul, ol {
+  list-style: none;
+}
+
+
+/* ============================================================
+   三、通用布局：容器、板块、标题
+   ============================================================ */
+
+/* .container 是"内容容器"：限制宽度并水平居中，
+   所有板块的内容都装在它里面，保证左右留白一致 */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;        /* 左右自动外边距 = 水平居中 */
+  padding: 0 20px;       /* 左右各留 20px，手机上文字不会贴着屏幕边 */
+}
+
+/* 每个板块的上下留白 */
+.section {
+  padding: 56px 0;
+  /* ★ 重要：点击导航跳转到本板块时，留出导航栏的高度，
+     否则板块标题会被顶部的导航栏挡住 */
+  scroll-margin-top: var(--nav-height);
+}
+
+/* 板块标题（关于我 / 技能 / 项目 ...） */
+.section-title {
+  color: var(--main-dark);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  /* 标题下方一条细线做分隔，比阴影更轻更干净 */
+  border-bottom: 2px solid var(--main);
+  display: inline-block;   /* 让下划线只跟文字一样长，而不是横跨整行 */
+}
+
+
+/* ============================================================
+   四、顶部导航栏
+   ============================================================ */
+
+/* position: sticky + top: 0 = 页面滚动时导航栏"吸"在顶部不动 */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;                      /* 保证导航栏盖在其他内容上面 */
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 68px;
+  display: flex;                     /* 弹性布局：左边站标题，右边站菜单 */
+  align-items: center;               /* 垂直居中 */
+  justify-content: space-between;    /* 两端对齐 */
+}
+
+/* 左侧网站名字 */
+.brand {
+  color: var(--main-dark);
+  font-size: 19px;
+  font-weight: 700;
+}
+.brand:hover {
+  text-decoration: none;
+}
+
+/* 右侧菜单：电脑上横排显示 */
+.nav-links {
+  display: flex;
+  gap: 26px;                         /* 每个菜单项之间的间距 */
+}
+
+.nav-links a {
+  color: var(--text);
+  font-size: 15px;
+  padding: 4px 0;
+}
+.nav-links a:hover {
+  color: var(--main);
+  text-decoration: none;
+}
+
+
+/* ---------- 汉堡按钮（三条横线 ☰）----------
+   电脑上隐藏（display: none），只在手机端显示（见文件末尾的媒体查询） */
+.hamburger {
+  display: none;              /* 电脑端隐藏 */
+  background: none;           /* 去掉按钮默认的灰色背景 */
+  border: none;
+  cursor: pointer;            /* 鼠标移上去变成小手 */
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+/* 中间的横线：一个 22×2 像素的小色块 */
+.hamburger-icon,
+.hamburger-icon::before,
+.hamburger-icon::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--main-dark);
+  /* transition = 过渡动画，让变形过程平滑，时长 0.2 秒 */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ::before / ::after 是"伪元素"，相当于凭空生成的小方块，
+   把它们分别放到中间横线的上方和下方，三条线就凑齐了 */
+.hamburger-icon {
+  position: relative;
+}
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: "";               /* 伪元素必须写 content 才会显示 */
+  position: absolute;
+  left: 0;
+}
+.hamburger-icon::before { top: -7px; }   /* 上方那条线 */
+.hamburger-icon::after  { top: 7px; }    /* 下方那条线 */
+
+/* 菜单展开时（JS 会给导航栏加上 nav-open 这个 class），
+   三条横线变形成一个叉号 ✕ */
+.navbar.nav-open .hamburger-icon {
+  background-color: transparent;   /* 中间那条线隐藏 */
+}
+.navbar.nav-open .hamburger-icon::before {
+  transform: translateY(7px) rotate(45deg);    /* 上线移到中间并旋转 45° */
+}
+.navbar.nav-open .hamburger-icon::after {
+  transform: translateY(-7px) rotate(-45deg);  /* 下线移到中间并反向旋转 */
+}
+
+
+/* ============================================================
+   五、板块 1：首页 Hero（头像 + 姓名 + 一句话简介）
+   ============================================================ */
+
+/* 首页用白色背景，和下面的浅灰页面背景形成区分 */
+.hero {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 0;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;    /* 竖着排：头像在上，文字在下 */
+  align-items: center;       /* 水平居中 */
+  text-align: center;
+}
+
+/* ---------- 头像 ----------
+   .avatar-placeholder 是"头像待添加"的灰色占位方块。
+   替换成真实照片时，HTML 里会改用 .avatar-img（<img> 标签），
+   所以这里两个选择器写在一起，保证换成图片后尺寸样式一致。 */
+.avatar-placeholder,
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius);
+  /* object-fit: cover 让照片按比例裁切填满方框，不会变形 */
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  background-color: #DDE2E6;      /* 占位方块的中性灰 */
+  border: 1px dashed #B6C0C7;     /* 虚线框，一眼看出这是待替换的占位 */
+  color: var(--text-muted);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-name {
+  color: var(--main-dark);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 22px 0 10px;
+}
+
+.hero-slogan {
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 520px;   /* 限制简介宽度，避免一行太长不好读 */
+}
+
+
+/* ============================================================
+   六、通用卡片 与 标签
+   ============================================================ */
+
+/* 卡片：白底 + 细边框 + 小圆角。★ 全程不用 box-shadow（无阴影要求） */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+/* 卡片里的标题 */
+.card-title {
+  color: var(--main-dark);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  color: var(--text);
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* ---------- 标签（技能展示用）---------- */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;    /* 一行放不下时自动换到下一行 */
+  gap: 10px;          /* 标签之间的间距 */
+}
+
+.tag {
+  background-color: var(--main-light);
+  color: var(--main);          /* 文字用主色 */
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid #D6E2EA;
+}
+
+/* 项目卡片里的小号标签 */
+.tag-small {
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
+
+/* ============================================================
+   七、板块 2：关于我 / 板块 6：联系方式 共用的信息列表
+   ============================================================ */
+
+/* <dl> 描述列表：左边是名称（dt），右边是内容（dd） */
+.info-list {
+  display: grid;
+  grid-template-columns: 100px 1fr;   /* 两列：名称列 100px，内容列占剩余空间 */
+  row-gap: 14px;                      /* 每一行之间的间距 */
+  column-gap: 12px;
+}
+
+.info-list dt {
+  color: var(--main-dark);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.info-list dd {
+  color: var(--text);
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   八、板块 4：项目卡片（桌面 3 列 / 手机 1 列）
+   ============================================================ */
+
+.project-grid {
+  display: grid;
+  /* repeat(3, 1fr) = 平均分成 3 列，每列宽度相同 */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+
+/* ============================================================
+   九、板块 5：博客列表（点击标题展开正文）
+   ============================================================ */
+
+.blog-list {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 24px;              /* 上下内边距交给每篇文章自己控制 */
+}
+
+/* 单篇文章之间用一条细线分隔（最后一条不画线） */
+.blog-item + .blog-item {
+  border-top: 1px solid var(--border);
+}
+
+/* 点击区域：这里用 <button> 而不是普通文字，
+   好处是键盘按 Tab 也能选中、按回车也能展开（无障碍友好）。
+   下面几行是把浏览器给按钮加的默认样式（灰底、边框、居中）清掉 */
+.blog-head {
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: inherit;     /* 继承页面的字体 */
+  font-size: inherit;
+  color: inherit;
+  text-align: left;         /* 按钮默认文字居中，这里改回左对齐 */
+  cursor: pointer;
+  padding: 18px 0;
+  display: flex;
+  flex-wrap: wrap;          /* 手机上日期会自动换到下一行 */
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.blog-title {
+  color: var(--main-dark);
+  font-size: 16px;
+  font-weight: 600;
+}
+.blog-head:hover .blog-title {
+  color: var(--main);       /* 鼠标移上去标题变色，提示可以点击 */
+}
+
+/* 展开状态（JS 会给整篇文章加上 open 这个 class）时，
+   标题后面加一个"收起"的提示符号 */
+.blog-item.open .blog-title::after {
+  content: "（点击收起）";
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.blog-date {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* 正文默认隐藏，展开时才显示 */
+.blog-body {
+  display: none;
+  padding: 0 0 20px;
+  color: var(--text);
+  font-size: 15px;
+}
+.blog-item.open .blog-body {
+  display: block;           /* 展开 */
+}
+
+.blog-summary {
+  color: var(--text-muted);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+
+/* 正文段落之间的间距 */
+.blog-body p + p {
+  margin-top: 12px;
+}
+
+
+/* ============================================================
+   十、页脚
+   ============================================================ */
+.footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   十一、★ 手机适配（响应式）★
+
+   @media 的意思是"当屏幕宽度满足条件时，才使用下面这些样式"。
+   这里的意思是：屏幕宽度 ≤ 768px（手机、平板竖屏）时生效。
+   电脑上打开时，这一段里的样式全部不生效。
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* 1) 手机端菜单：变成从导航栏下方滑出的竖排面板 */
+  .nav-links {
+    display: none;              /* 默认收起 */
+    position: absolute;         /* 脱离文档流，浮在页面上 */
+    top: 100%;                  /* 紧贴在导航栏下边缘 */
+    left: 0;
+    right: 0;                   /* 左右拉满整个屏幕宽度 */
+    flex-direction: column;     /* 菜单项由横排改成竖排 */
+    gap: 0;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 20px 12px;
+  }
+
+  /* 加了 nav-open 这个 class 时才展开菜单（由 script.js 控制） */
+  .navbar.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);   /* 每项之间画分隔线 */
+    font-size: 16px;
+  }
+  /* 最后一项不需要下划线 */
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  /* 2) 显示汉堡按钮（电脑端它是隐藏的） */
+  .hamburger {
+    display: block;
+  }
+
+  /* 3) 首页留白缩小，字号调小，避免手机上占屏幕太多 */
+  .hero {
+    padding: 48px 0;
+  }
+  .hero-name {
+    font-size: 26px;
+  }
+  .hero-slogan {
+    font-size: 15px;
+  }
+
+  /* 4) 每个板块的上下留白缩小 */
+  .section {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 21px;
+  }
+
+  /* 5) ★ 布局变单列 ★
+     项目卡片：3 列 → 1 列（手机上竖着排，卡片更宽更好读） */
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 卡片内边距缩小，给文字留更多宽度 */
+  .card {
+    padding: 18px;
+  }
+
+  /* 6) 关于我 / 联系方式：名称和内容改成上下两行排列，
+        否则手机上"兴趣方向"这几个字会把内容挤得很窄 */
+  .info-list {
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+  }
+  .info-list dd {
+    margin-bottom: 10px;
+  }
+
+  /* 7) 博客列表左右内边距缩小 */
+  .blog-list {
+    padding: 0 18px;
+  }
+}
+
+
+/* ============================================================
+   十二、更小的手机（屏幕宽度 ≤ 400px）再微调一次
+   ============================================================ */
+@media (max-width: 400px) {
+  .hero-name {
+    font-size: 23px;
+  }
+  .tag {
+    font-size: 13px;
+    padding: 5px 11px;
+  }
+}
